@@ -1,0 +1,16 @@
+<h1 class="text-xl font-bold underline" mat-dialog-title>Hi {{data.name}}</h1>
+<form (ngSubmit)="onSubmit($event)">
+<div mat-dialog-content>
+  <p class="text-black">Ajouter le nombre des vu pour chaque :</p>
+  <div *ngFor="let item of data;let index = index;" class="flex py-4">
+    <div class="text-sm">{{item.name}} :</div>
+    <div>
+        <input name="input{{item.id}}" value="{{item.views ?? 0}}" type="number" class="block rounded-md border-0 py-1.5 pl-1 pr-2 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+    </div>
+</div>
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="onNoClick()">Fermer</button>
+  <button type="submit" mat-button cdkFocusInitial>Valider</button>
+</div>
+</form>

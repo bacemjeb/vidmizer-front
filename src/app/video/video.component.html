@@ -1,1 +1,86 @@
-<mat-slide-toggle>Toggle me!</mat-slide-toggle>
+<div>
+    <button mat-button [matMenuTriggerFor]="menu"[ngClass]="{'disabled-color': selection.selected.length == 0}" class="button" [disabled]="selection.selected.length == 0">
+        <span class="text-white">Générer rapport</span>
+    </button>
+    <mat-menu #menu="matMenu">
+        <button mat-menu-item (click)="openFormVideo()">générer par video</button>
+        <button mat-menu-item (click)="openFormVideo()">générer par dossier</button>
+    </mat-menu>
+    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+
+        <!-- Checkbox Column -->
+        <ng-container matColumnDef="select">
+          <th mat-header-cell *matHeaderCellDef>
+            <mat-checkbox (change)="$event ? toggleAllRows() : null"
+                          [checked]="selection.hasValue() && isAllSelected()"
+                          [indeterminate]="selection.hasValue() && !isAllSelected()"
+                          [aria-label]="checkboxLabel()">
+            </mat-checkbox>
+          </th>
+          <td mat-cell *matCellDef="let row">
+            <mat-checkbox (click)="$event.stopPropagation()"
+                          (change)="$event ? selection.toggle(row) : null"
+                          [checked]="selection.isSelected(row)"
+                          [aria-label]="checkboxLabel(row)">
+            </mat-checkbox>
+          </td>
+        </ng-container>
+      
+
+        <ng-container matColumnDef="name">
+          <th mat-header-cell *matHeaderCellDef> name </th>
+          <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+        </ng-container>
+      
+
+        <ng-container matColumnDef="duration">
+          <th mat-header-cell *matHeaderCellDef> duration </th>
+          <td mat-cell *matCellDef="let element"> {{element.duration}} </td>
+        </ng-container>
+      
+
+        <ng-container matColumnDef="size">
+          <th mat-header-cell *matHeaderCellDef> size </th>
+          <td mat-cell *matCellDef="let element"> {{element.size}} </td>
+        </ng-container>
+      
+
+        <ng-container matColumnDef="quality">
+          <th mat-header-cell *matHeaderCellDef> quality </th>
+          <td mat-cell *matCellDef="let element"> {{element.quality}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="views">
+            <th mat-header-cell *matHeaderCellDef> views </th>
+            <td mat-cell *matCellDef="let element"> {{element.views}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="button">
+            <th mat-header-cell *matHeaderCellDef> </th>
+            <td mat-cell *matCellDef="let element">
+                <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+                    <mat-icon>more_vert</mat-icon>
+                  </button>
+                  <mat-menu #menu="matMenu">
+                    <button mat-menu-item>
+                      <mat-icon>dialpad</mat-icon>
+                      <span>Redial</span>
+                    </button>
+                    <button mat-menu-item disabled>
+                      <mat-icon>voicemail</mat-icon>
+                      <span>Check voice mail</span>
+                    </button>
+                    <button mat-menu-item>
+                      <mat-icon>notifications_off</mat-icon>
+                      <span>Disable alerts</span>
+                    </button>
+                  </mat-menu>
+            </td>
+          </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"
+            (click)="selection.toggle(row)">
+        </tr>
+      </table>
+</div>

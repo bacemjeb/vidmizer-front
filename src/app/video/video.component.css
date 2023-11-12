@@ -1,0 +1,17 @@
+.button {
+  background-color: #1a8fc6; 
+  border: none;
+  color: white;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 10px;
+}
+
+.text-white{
+    color: white;
+}
+.disabled-color{
+    background-color: #c8d6dc; 
+}

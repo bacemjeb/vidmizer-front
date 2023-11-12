@@ -1,9 +1,6 @@
-export interface Video {
+export interface Folder {
     isSelected: boolean;
     id: number;
     name: string;
-    duration: number;
-    size: number;
-    quality: string;
     views: number;
   }
