@@ -1,4 +1,4 @@
-<div class="relative overflow-x-auto">
+<div class="relative overflow-x-auto" id="htmlData"> 
 <table *ngIf="rapport" class="w-full text-sm text-left table-auto shadow-md mt-5 rounded border-separate border-spacing-y-3">
     <thead class="text-xs text-gray-700 bg-gray-300 border border-gray-200">
         <tr class="border border-gray-200">
@@ -16,8 +16,8 @@
             <td class="border border-gray-200">Réduction poids (%)</td>
         </tr>
     </thead>
-    <tbody >
-        <tr *ngFor="let item of rapport.videos; let index = index;">
+    <tbody class="text-xs">
+        <tr class="text-xs " *ngFor="let item of rapport.videos; let index = index;">
         
             <td class="border border-gray-200" *ngFor="let it of sortArray(item.folders)"><div *ngIf="it">{{it.name}}</div></td>
             <td class="border border-gray-200" *ngIf="item"><input type="text" [ngModel]="item.name" (ngModelChange)="changeName($event, index, item)"></td>
@@ -35,4 +35,7 @@
         </tr>
     </tbody>
 </table>
+</div>
+<div class="">
+    <button class="button p-2" (click)="generatePdf()">Télécharger PDF</button>
 </div>

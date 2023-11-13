@@ -72,7 +72,7 @@ export class ListeRapportComponent implements OnInit {
   }
 
   generateCsv(){
-    
+
   }
 
 }
