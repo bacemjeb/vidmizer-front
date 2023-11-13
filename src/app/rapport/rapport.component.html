@@ -20,8 +20,8 @@
         <tr *ngFor="let item of rapport.videos; let index = index;">
         
             <td class="border border-gray-200" *ngFor="let it of sortArray(item.folders)"><div *ngIf="it">{{it.name}}</div></td>
-            <td class="border border-gray-200" *ngIf="item"><input type="number" [ngModel]="item.name" (ngModelChange)="changeName($event, index, item)"></td>
-            <td class="border border-gray-200" *ngIf="item"><input type="number" [ngModel]="item.quality" (ngModelChange)="changeQuality($event, index, item)"></td>
+            <td class="border border-gray-200" *ngIf="item"><input type="text" [ngModel]="item.name" (ngModelChange)="changeName($event, index, item)"></td>
+            <td class="border border-gray-200" *ngIf="item"><input type="text" [ngModel]="item.quality" (ngModelChange)="changeQuality($event, index, item)"></td>
             <td class="border border-gray-200" *ngIf="item"><input type="number" [ngModel]="item.views" (ngModelChange)="changeViews($event, index, item)"></td>
             <td class="border border-gray-200" *ngIf="item">{{item.size / item.views}}</td>
             <td class="border border-gray-200" *ngIf="item"><input type="number" [ngModel]="item.size" (ngModelChange)="changeSize($event, index, item)"></td>

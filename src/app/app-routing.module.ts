@@ -10,6 +10,10 @@ const routes: Routes = [
     path: 'rapport/:id',
     loadComponent: () => import('./rapport/rapport.component').then(m => m.RapportComponent)
   },
+  {
+    path: 'rapports',
+    loadComponent: () => import('./liste-rapport/liste-rapport.component').then(m => m.ListeRapportComponent)
+  },
 
 ];
 

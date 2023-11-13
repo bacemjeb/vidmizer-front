@@ -1,10 +1,10 @@
 <div>
     <button mat-button [matMenuTriggerFor]="menu"[ngClass]="{'disabled-color': selection.selected.length == 0}" class="button" [disabled]="selection.selected.length == 0">
-        <span class="text-white">Générer rapport</span>
+        <span class="text-white">Générer Document</span>
     </button>
     <mat-menu #menu="matMenu">
-        <button mat-menu-item (click)="openFormVideo()">générer par video</button>
-        <button mat-menu-item (click)="openFormVideo()">générer par dossier</button>
+        <button mat-menu-item (click)="generatePdf()">PDF</button>
+        <button mat-menu-item (click)="generateCsv()">CSV</button>
     </mat-menu>
     <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
 
@@ -33,26 +33,21 @@
         </ng-container>
       
 
-        <ng-container matColumnDef="duration">
-          <th mat-header-cell *matHeaderCellDef> duration </th>
-          <td mat-cell *matCellDef="let element"> {{element.duration}} </td>
-        </ng-container>
-      
-
-        <ng-container matColumnDef="size">
-          <th mat-header-cell *matHeaderCellDef> size </th>
-          <td mat-cell *matCellDef="let element"> {{element.size}} </td>
-        </ng-container>
-      
-
-        <ng-container matColumnDef="quality">
-          <th mat-header-cell *matHeaderCellDef> quality </th>
-          <td mat-cell *matCellDef="let element"> {{element.quality}} </td>
+        <ng-container matColumnDef="video">
+          <th mat-header-cell *matHeaderCellDef> Nombre de video </th>
+          <td mat-cell *matCellDef="let element"> {{element.videos.length}} </td>
         </ng-container>
 
-        <ng-container matColumnDef="views">
-            <th mat-header-cell *matHeaderCellDef> views </th>
-            <td mat-cell *matCellDef="let element"> {{element.views}} </td>
+        <ng-container matColumnDef="videos">
+            <th mat-header-cell *matHeaderCellDef>videos</th>
+            <td mat-cell *matCellDef="let element"> <div *ngFor="let item of element.videos">{{item.name}}</div> </td>
+          </ng-container>
+
+          <ng-container matColumnDef="button">
+            <th mat-header-cell *matHeaderCellDef> </th>
+            <td mat-cell *matCellDef="let element">
+                <button (click)="onBtnClick(element.id)"> consulter</button>
+            </td>
           </ng-container>
 
         <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
