@@ -22,7 +22,11 @@ export class VideoService {
     .pipe<Video[]>(map((data: any) => data['hydra:member']));
   }
 
-  updateVideo(video: Video): Observable<Video[]> {
-    return this.http.patch<Video[]>(this.url + '/videos/' + video.id, {views: video.views});
+  updateVideo(video: any): Observable<any> {
+    return this.http.patch<any>(this.url + '/videos/' + video.id, {views: video.views});
+  }
+
+  editeVideo(video: any): Observable<any> {
+    return this.http.put<any>(this.url + '/videos/' + video.id, video);
   }
 }

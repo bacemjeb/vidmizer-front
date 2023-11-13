@@ -1,0 +1,38 @@
+<div class="relative overflow-x-auto">
+<table *ngIf="rapport" class="w-full text-sm text-left table-auto shadow-md mt-5 rounded border-separate border-spacing-y-3">
+    <thead class="text-xs text-gray-700 bg-gray-300 border border-gray-200">
+        <tr class="border border-gray-200">
+            <td class="border border-gray-200"[attr.colspan]="nbrFolder" >Dossier</td>
+            <td class="border border-gray-200">Nom de video</td>
+            <td class="border border-gray-200">Résolution</td>
+            <td class="border border-gray-200">Nombre d'impres</td>
+            <td class="border border-gray-200">Poids unitaire - source (Go)</td>
+            <td class="border border-gray-200">Total poids - source (Go)</td>
+            <td class="border border-gray-200">Émission C02 - source (kg)</td>
+            <td class="border border-gray-200">Poids unitaire - Encodée (Go)</td>
+            <td class="border border-gray-200">Total poids - Encodée (Go)</td>
+            <td class="border border-gray-200">Emission Co2 - Encodée (Kg)</td>
+            <td class="border border-gray-200">Gain carbone (gr)</td>
+            <td class="border border-gray-200">Réduction poids (%)</td>
+        </tr>
+    </thead>
+    <tbody >
+        <tr *ngFor="let item of rapport.videos; let index = index;">
+        
+            <td class="border border-gray-200" *ngFor="let it of sortArray(item.folders)"><div *ngIf="it">{{it.name}}</div></td>
+            <td class="border border-gray-200" *ngIf="item"><input type="number" [ngModel]="item.name" (ngModelChange)="changeName($event, index, item)"></td>
+            <td class="border border-gray-200" *ngIf="item"><input type="number" [ngModel]="item.quality" (ngModelChange)="changeQuality($event, index, item)"></td>
+            <td class="border border-gray-200" *ngIf="item"><input type="number" [ngModel]="item.views" (ngModelChange)="changeViews($event, index, item)"></td>
+            <td class="border border-gray-200" *ngIf="item">{{item.size / item.views}}</td>
+            <td class="border border-gray-200" *ngIf="item"><input type="number" [ngModel]="item.size" (ngModelChange)="changeSize($event, index, item)"></td>
+            <td class="border border-gray-200" *ngIf="item">{{item.size * 0.05}}</td>
+            <td class="border border-gray-200" *ngIf="item.encoders[0]">{{item.encoders[0].size / item.views}}</td>
+            <td class="border border-gray-200" *ngIf="item.encoders[0]">{{item.encoders[0].size}}</td>
+            <td class="border border-gray-200" *ngIf="item.encoders[0]">{{item.encoders[0].size * 0.05}}</td>
+            <td class="border border-gray-200" *ngIf="item && item.encoders[0]">{{(item.size * 0.05) - (item.encoders[0].size * 0.05)}}</td>
+            <td class="border border-gray-200" *ngIf="item && item.encoders[0]">{{(100 * ((item.size * 0.05) - (item.encoders[0].size * 0.05)))/ (item.size * 0.05)}}</td>
+      
+        </tr>
+    </tbody>
+</table>
+</div>
