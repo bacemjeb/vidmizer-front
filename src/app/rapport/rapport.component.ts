@@ -59,16 +59,14 @@ export class RapportComponent implements OnInit {
 
   updateData(item: any) {
     const data = item
+    let folders = data.folders
+    let encoders = data.encoders
     data.folders = data.folders.map(function(a: any) {return a['@id'];})
     data.encoders = data.encoders.map(function(a: any) {return a['@id'];})
+    
     this.videoService.editeVideo(data).subscribe((ress) => {
-      console.log(ress)
-      this.service.getRapport(this.id).subscribe(
-        res => {
-          this.rapport = res;
-          this.nbrFolder = this.rapport.videos[0].folders.length
-        }
-      )
+      data.folders = folders
+      data.encoders = encoders
     }
     )
   }
@@ -84,7 +82,7 @@ export class RapportComponent implements OnInit {
       let PDF = new jsPDF('p', 'mm', 'a4');
       let position = 0;
       PDF.addImage(FILEURI, 'PNG', 0, position, fileWidth, fileHeight);
-      PDF.save('rapport-encodage.pdf');
+      PDF.save('angular-demo.pdf');
     });
   }
 }
